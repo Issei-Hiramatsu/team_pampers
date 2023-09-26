@@ -1,11 +1,23 @@
 # team_pampers
 
 ## 環境構築
-### FVMの導入
+
+## リポジトリの複製
+```bash
+git clone https://github.com/Issei-Hiramatsu/team_pampers.git
+```
+
+
+## FVMの導入
 FVMをインストールしていない場合、 下記記事を参考に設定する。
 
 * Mac https://zenn.dev/riscait/articles/flutter-version-management
 * Windows https://qiita.com/idani/items/0e45d037b4c2a93840a7
+
+## プロジェクトでのバージョン適用
+```bash
+fvm use 3.13.5
+```
 
 
 ## バージョン
