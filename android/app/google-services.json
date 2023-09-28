@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "613294581282",
+    "project_id": "team-pampers",
+    "storage_bucket": "team-pampers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613294581282:android:31b5f00c5b3f5ac0c90c7b",
+        "android_client_info": {
+          "package_name": "com.example.team_pampers"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqEYYfDw33wc50J7igXl7_jq3bAVLlNP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

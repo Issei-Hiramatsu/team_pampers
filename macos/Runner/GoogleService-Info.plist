@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAC_y_HrRz2UZtK2Rs72RCVt5HEsnRx-Dw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>613294581282</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.teamPampers.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>team-pampers</string>
+	<key>STORAGE_BUCKET</key>
+	<string>team-pampers.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:613294581282:ios:269990d6007ea775c90c7b</string>
+</dict>
+</plist>
