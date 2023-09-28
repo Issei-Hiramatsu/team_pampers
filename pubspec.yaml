@@ -24,6 +24,10 @@ dependencies:
   shared_preferences: ^2.2.1
   tuple: ^2.0.2
   flutter_spinkit: ^5.2.0
+  firebase_core: ^2.16.0
+  cloud_firestore: ^4.9.2
+  firebase_auth: ^4.10.0
+  firebase_storage: ^11.2.7
 
 dev_dependencies:
   build_runner: ^2.4.6
