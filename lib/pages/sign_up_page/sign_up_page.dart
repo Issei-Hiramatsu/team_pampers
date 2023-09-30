@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/features/auth/auth.dart';
-import 'package:team_pampers/pages/home_page/home_page.dart';
+import 'package:team_pampers/pages/sign_up_page/select_image_page.dart';
 import 'package:team_pampers/utils/utils.dart';
 import 'package:team_pampers/widgets/widgets.dart';
-
 
 class SignUpPage extends HookConsumerWidget {
   const SignUpPage({
@@ -65,7 +64,7 @@ class SignUpPage extends HookConsumerWidget {
                     if (email.isEmpty ||
                         password.isEmpty ||
                         userNameController.text.isEmpty) {
-                      return context.showSnackBar('ユーザーネームを入力してください');
+                      return context.showSnackBar('ユーザー情報を入力してください');
                     } else {
                       await ref.read(signUpProvider).call(
                             userName: userNameController.text,
@@ -74,7 +73,7 @@ class SignUpPage extends HookConsumerWidget {
                             onSuccess: () {
                               Navigator.pushAndRemoveUntil(
                                 context,
-                                HomePage.route(),
+                                SelectImagePage.route(),
                                 (_) => false,
                               );
                             },

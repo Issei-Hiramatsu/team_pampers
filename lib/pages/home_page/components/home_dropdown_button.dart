@@ -10,7 +10,7 @@ class HomeDropDownButton extends StatelessWidget {
         border: Border.all(color: Colors.black,)
       ),
       child: DropdownButton(
-        hint: Center(child: Text('ランダム')),
+        hint: const Center(child: Text('ランダム')),
         isExpanded: true,
         underline: Container(),
         ///  itemsにスポンサーのカテゴリーを入れる  ///
