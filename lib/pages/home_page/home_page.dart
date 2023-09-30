@@ -1,12 +1,9 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/pages/profile_page/profile_page.dart';
 import 'package:team_pampers/widgets/custom_button.dart';
 import 'package:team_pampers/widgets/drawer.dart';
 import 'package:team_pampers/pages/home_page/components/home_dropdown_button.dart';
-import 'package:team_pampers/utils/utils.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:team_pampers/pages/quiz_page/quiz_page.dart';
 
@@ -84,14 +81,16 @@ class HomePage extends HookConsumerWidget {
                   Expanded(
                     child: SizedBox(
                       height: 50,
-                      child: CustomButton(onPressed: (){
-                        Navigator.push(
-                          context,
-                          ProfilePage.route(
-                          ),
-                        );
-                      }, icon: Icons.person_outline,text: 'Profile',),
-
+                      child: CustomButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            ProfilePage.route(),
+                          );
+                        },
+                        icon: Icons.person_outline,
+                        text: 'Profile',
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -100,7 +99,11 @@ class HomePage extends HookConsumerWidget {
                   Expanded(
                     child: SizedBox(
                       height: 50,
-                      child: CustomButton(onPressed: (){}, icon: Icons.emoji_events_outlined,text: 'Ranking',),
+                      child: CustomButton(
+                        onPressed: () {},
+                        icon: Icons.emoji_events_outlined,
+                        text: 'Ranking',
+                      ),
                     ),
                   ),
                 ],
