@@ -5,6 +5,8 @@ import 'package:team_pampers/repositories/quiz/quiz_repository_impl.dart';
 import 'package:team_pampers/utils/utils.dart';
 import 'package:team_pampers/widgets/widgets.dart';
 
+final questionIndexProvider = StateProvider.autoDispose<int>((ref) => 1);
+
 final isCorrectProvider = StateProvider.autoDispose<bool>((ref) => false);
 
 final didAnswerProvider = StateProvider.autoDispose<bool>((ref) => false);

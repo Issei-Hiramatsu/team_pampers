@@ -6,11 +6,17 @@ import 'package:team_pampers/pages/quiz_page/components/quiz_components.dart';
 import 'package:team_pampers/widgets/widgets.dart';
 
 class QuizPage extends HookConsumerWidget {
-  const QuizPage({super.key});
+  const QuizPage({
+    super.key,
+    this.index,
+  });
+  final int? index;
 
-  static Route<dynamic> route() {
+  static Route<dynamic> route({int? index}) {
     return MaterialPageRoute<dynamic>(
-      builder: (_) => const QuizPage(),
+      builder: (_) => QuizPage(
+        index: index,
+      ),
     );
   }
 
@@ -18,6 +24,7 @@ class QuizPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const quizAlphabet = ['a', 'b', 'c', 'd'];
     final fetchQuiz = ref.watch(fetchQuizProvider);
+    final questionIndex = ref.watch(questionIndexProvider.notifier).state;
     return Scaffold(
       body: JudgeRightWrongAnimation(
         child: Column(
@@ -30,20 +37,23 @@ class QuizPage extends HookConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       const SizedBox(height: 150),
-                      const Text("Q1"),
+                      Text("Q$questionIndex"),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: Text(quizList[1].description),
+                        child: Text(quizList[index ?? 0].description),
                       ),
                       Column(
-                        children:
-                            quizList[1].answers.asMap().entries.map((answer) {
-                          final index = answer.key;
+                        children: quizList[index ?? 0]
+                            .answers
+                            .asMap()
+                            .entries
+                            .map((answer) {
+                          final answerIndex = answer.key;
                           final answerValue = answer.value;
                           return QuizSelectWidget(
-                            text: '${quizAlphabet[index]} $answerValue',
+                            text: '${quizAlphabet[answerIndex]} $answerValue',
                             answer: answerValue,
-                            currentAnswer: quizList[1].currentAnswer,
+                            currentAnswer: quizList[index ?? 0].currentAnswer,
                           );
                         }).toList(),
                       ),
