@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:team_pampers/utils/gen/assets.gen.dart';
 
 import '../hooks/use_right_wrong_judge.dart';
 
@@ -19,8 +20,20 @@ class JudgeRightWrongAnimation extends ConsumerWidget {
       children: [
         didAnswer
             ? isCollect
-                ? Center(child: Image.asset('images/green_circle.png'))
-                : Center(child: Image.asset('images/red_cross.png'))
+                ? Center(
+                    child: FractionallySizedBox(
+                      widthFactor: 0.5,
+                      heightFactor: 0.5,
+                      child: Image.asset(Assets.images.greenCircle.path),
+                    ),
+                  )
+                : Center(
+                    child: FractionallySizedBox(
+                      widthFactor: 0.5,
+                      heightFactor: 0.5,
+                      child: Image.asset(Assets.images.redCross.path),
+                    ),
+                  )
             : Container(),
         child,
       ],
