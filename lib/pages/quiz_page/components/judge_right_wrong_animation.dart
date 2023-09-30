@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:team_pampers/features/quiz/quiz.dart';
 import 'package:team_pampers/utils/gen/assets.gen.dart';
-
-import '../hooks/use_right_wrong_judge.dart';
 
 class JudgeRightWrongAnimation extends ConsumerWidget {
   const JudgeRightWrongAnimation({
@@ -15,7 +13,8 @@ class JudgeRightWrongAnimation extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final didAnswer = ref.watch(didAnswerProvider);
-    final isCollect = ref.watch(isCollectProvider);
+    final isCollect = ref.watch(isCorrectProvider);
+
     return Stack(
       children: [
         didAnswer
