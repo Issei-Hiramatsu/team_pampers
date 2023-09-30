@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/pages/sign_in_page/sign_in_page.dart';
+import 'package:team_pampers/widgets/widgets.dart';
 
 class ResetPasswordPage extends HookConsumerWidget {
   const ResetPasswordPage({super.key});
@@ -13,6 +15,8 @@ class ResetPasswordPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final emailController = useTextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -34,9 +38,11 @@ class ResetPasswordPage extends HookConsumerWidget {
                 const SizedBox(
                   height: 60,
                 ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                      icon: Icon(Icons.mail), labelText: 'メールアドレス'),
+                CustomTextField(
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  labelText: 'メールアドレス',
+                  icon: Icons.mail,
                 ),
                 const SizedBox(
                   height: 20,

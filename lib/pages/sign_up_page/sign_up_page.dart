@@ -4,6 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/features/auth/auth.dart';
 import 'package:team_pampers/pages/home_page/home_page.dart';
 import 'package:team_pampers/utils/utils.dart';
+import 'package:team_pampers/widgets/widgets.dart';
+
 
 class SignUpPage extends HookConsumerWidget {
   const SignUpPage({
@@ -49,10 +51,11 @@ class SignUpPage extends HookConsumerWidget {
                 const SizedBox(
                   height: 60,
                 ),
-                TextFormField(
+                CustomTextField(
                   controller: userNameController,
-                  decoration: const InputDecoration(
-                      icon: Icon(Icons.person), labelText: 'ユーザーネーム'),
+                  keyboardType: TextInputType.name,
+                  labelText: 'ユーザーネーム',
+                  icon: Icons.person,
                 ),
                 const SizedBox(
                   height: 60,

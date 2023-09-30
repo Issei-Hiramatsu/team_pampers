@@ -6,6 +6,7 @@ import 'package:team_pampers/pages/home_page/home_page.dart';
 import 'package:team_pampers/pages/reset_password_page/reset_password_page.dart';
 import 'package:team_pampers/pages/sign_up_page/sign_up_page.dart';
 import 'package:team_pampers/utils/utils.dart';
+import 'package:team_pampers/widgets/widgets.dart';
 
 class SignInPage extends HookConsumerWidget {
   const SignInPage({super.key});
@@ -20,13 +21,12 @@ class SignInPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
+    final passwordFocusNode = useFocusNode();
 
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -39,19 +39,26 @@ class SignInPage extends HookConsumerWidget {
                 const SizedBox(
                   height: 60,
                 ),
-                TextFormField(
+                CustomTextField(
                   controller: emailController,
-                  decoration: const InputDecoration(
-                      icon: Icon(Icons.mail), labelText: 'メールアドレス'),
+                  keyboardType: TextInputType.emailAddress,
+                  onFieldSubmitted: (_) =>
+                      FocusScope.of(context).requestFocus(passwordFocusNode),
+                  textInputAction: TextInputAction.next,
+                  labelText: 'メールアドレス',
+                  icon: Icons.mail,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                TextFormField(
+                CustomTextField(
                   controller: passwordController,
                   obscureText: true,
-                  decoration: const InputDecoration(
-                      icon: Icon(Icons.lock), labelText: 'パスワード'),
+                  keyboardType: TextInputType.visiblePassword,
+                  focusNode: passwordFocusNode,
+                  textInputAction: TextInputAction.done,
+                  labelText: 'パスワード',
+                  icon: Icons.lock,
                 ),
                 const SizedBox(
                   height: 60,
