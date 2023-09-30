@@ -25,6 +25,7 @@ class QuizSelectWidget extends HookConsumerWidget {
         onPressed: didAnswer
             ? null
             : () async {
+              ref.read(didAnswerProvider.notifier).state = true;
                 final isCorrect = await ref.read(jadgeQuizProvider).call(
                       answer: currentAnswer,
                       selectedAnswer: answer,
