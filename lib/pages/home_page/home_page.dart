@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/pages/home_page/components/home_button.dart';
-import 'package:team_pampers/pages/profile_page/profile_page.dart';
 import 'package:team_pampers/utils/utils.dart';
-import 'package:team_pampers/widgets/custom_button.dart';
 import 'package:team_pampers/widgets/drawer.dart';
 
 class HomePage extends HookConsumerWidget {
@@ -38,28 +36,21 @@ class HomePage extends HookConsumerWidget {
               SizedBox(height: 100,),
               SizedBox(
                 height: 80,
-                  child: CustomButton(onPressed: (){}, text: 'START')),
+                  child: HomePageButton(onPressed: (){}, text: 'START')),
               SizedBox(height: 8,),
               Row(
                 children: [
                   Expanded(
                     child: Container(
                       height: 50,
-                      child: CustomButton(
-                        onPressed: (){
-                        Navigator.push(
-                          context,
-                          ProfilePage.route(
-                          ),
-                        );
-                      }, icon: Icons.person_outline,text: 'Profile',),
+                      child: HomePageButton(onPressed: (){}, icon: Icons.person_outline,text: 'Profile',),
                     ),
                   ),
                   SizedBox(width: 8,),
                   Expanded(
                     child: Container(
                       height: 50,
-                      child: CustomButton(onPressed: (){}, icon: Icons.emoji_events_outlined,text: 'Ranking',),
+                      child: HomePageButton(onPressed: (){}, icon: Icons.emoji_events_outlined,text: 'Ranking',),
                     ),
                   ),
                 ],
