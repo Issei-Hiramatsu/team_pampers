@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/features/quiz/quiz.dart';
-import 'package:team_pampers/pages/home_page/home_page.dart';
 import 'package:team_pampers/pages/quiz_page/quiz_page.dart';
+import 'package:team_pampers/pages/result_page/result_page.dart';
 import 'package:team_pampers/utils/gen/assets.gen.dart';
 
 class JudgeRightWrongAnimation extends ConsumerWidget {
@@ -22,7 +22,7 @@ class JudgeRightWrongAnimation extends ConsumerWidget {
         if (questionIndex == 5) {
           Navigator.pushAndRemoveUntil(
             context,
-            HomePage.route(),
+            ResultPage.route(),
             (_) => false,
           );
         } else {
@@ -33,6 +33,7 @@ class JudgeRightWrongAnimation extends ConsumerWidget {
             (_) => false,
           );
         }
+        ref.read(quizJudgeListProvider.notifier).state.add(isCollect);
         ref.read(didAnswerProvider.notifier).state = false;
       });
     }
