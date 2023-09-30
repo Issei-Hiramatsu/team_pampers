@@ -10,14 +10,13 @@ class CustomDrawer extends StatelessWidget {
         children: [
           ListTile(
             onTap: () {},
-            leading: Icon(Icons.exit_to_app),
+            leading: const Icon(Icons.exit_to_app),
             title: const Text(
               'ログアウト',
             ),
           ),
         ],
       ),
-
     );
   }
 }

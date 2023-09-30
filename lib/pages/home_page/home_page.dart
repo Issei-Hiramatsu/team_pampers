@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/pages/home_page/components/home_button.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:team_pampers/pages/quiz_page/quiz_page.dart';
 import 'package:team_pampers/widgets/drawer.dart';
-
-import '../quiz_page/right_wrong_test.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -17,14 +16,14 @@ class HomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var _scaffoldKey = GlobalKey<ScaffoldState>();
+    final scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-      key: _scaffoldKey,
+      key: scaffoldKey,
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.settings),
           onPressed: () {
-            _scaffoldKey.currentState!.openDrawer();
+            scaffoldKey.currentState!.openDrawer();
           },
         ),
       ),
@@ -45,7 +44,7 @@ class HomePage extends HookConsumerWidget {
                       height: 80,
                       child: HomePageButton(
                           onPressed: () {
-                            Navigator.push(context, RightWrongTestPage.route());
+                            Navigator.push(context, QuizPage.route());
                           },
                           text: 'START'))
                   .animate(onPlay: (controller) => controller.repeat())
@@ -67,7 +66,7 @@ class HomePage extends HookConsumerWidget {
               Row(
                 children: [
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 50,
                       child: HomePageButton(
                         onPressed: () {},
@@ -80,7 +79,7 @@ class HomePage extends HookConsumerWidget {
                     width: 8,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 50,
                       child: HomePageButton(
                         onPressed: () {},
