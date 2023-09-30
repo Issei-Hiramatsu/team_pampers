@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/pages/profile_page/profile_page.dart';
+import 'package:team_pampers/pages/ranking_page/ranking_page.dart';
 import 'package:team_pampers/widgets/custom_button.dart';
 import 'package:team_pampers/widgets/drawer.dart';
 import 'package:team_pampers/pages/home_page/components/home_dropdown_button.dart';
