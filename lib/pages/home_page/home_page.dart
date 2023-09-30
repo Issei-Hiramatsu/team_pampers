@@ -40,16 +40,18 @@ class HomePage extends HookConsumerWidget {
               SizedBox(height: 8,),
               Row(
                 children: [
-                  SizedBox(
-                    height: 50,
-                    width: context.deviceWidth*0.5-24-4,
-                    child: HomePageButton(onPressed: (){}, icon: Icons.person_outline,text: 'Profile',),
+                  Expanded(
+                    child: Container(
+                      height: 50,
+                      child: HomePageButton(onPressed: (){}, icon: Icons.person_outline,text: 'Profile',),
+                    ),
                   ),
                   SizedBox(width: 8,),
-                  SizedBox(
-                    height: 50,
-                    width: context.deviceWidth*0.5-24-4,
-                    child: HomePageButton(onPressed: (){}, icon: Icons.emoji_events_outlined,text: 'Ranking',),
+                  Expanded(
+                    child: Container(
+                      height: 50,
+                      child: HomePageButton(onPressed: (){}, icon: Icons.emoji_events_outlined,text: 'Ranking',),
+                    ),
                   ),
                 ],
               )
