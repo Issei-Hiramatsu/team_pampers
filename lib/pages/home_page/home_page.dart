@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/pages/profile_page/profile_page.dart';
@@ -5,7 +7,7 @@ import 'package:team_pampers/widgets/custom_button.dart';
 import 'package:team_pampers/widgets/drawer.dart';
 
 class HomePage extends HookConsumerWidget {
-   const HomePage({super.key});
+  const HomePage({super.key});
 
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(
@@ -15,25 +17,42 @@ class HomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var _scaffoldKey = GlobalKey<ScaffoldState>();
+    final scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-      key: _scaffoldKey,
+      key: scaffoldKey,
       appBar: AppBar(
-        leading:
-          IconButton(icon: Icon(Icons.settings),
-            onPressed: (){
-              _scaffoldKey.currentState!.openDrawer();
-
-            },),
+        leading: IconButton(
+          icon: const Icon(Icons.settings),
+          onPressed: () {
+            scaffoldKey.currentState!.openDrawer();
+          },
+        ),
       ),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('XXXXテスト',style: Theme.of(context).textTheme.headlineLarge,),
-              SizedBox(height: 100,),
+              Text(
+                'XXXXテスト',
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              Row(
+                children: [
+                  Expanded(child: Container()),
+                  const Expanded(
+                    child: SizedBox(
+                      height: 35,
+                      child: HomeDropDownButton(),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8,),
               SizedBox(
                 height: 80,
                   child: CustomButton(onPressed: (){}, text: 'START')),
@@ -41,7 +60,7 @@ class HomePage extends HookConsumerWidget {
               Row(
                 children: [
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 50,
                       child: CustomButton(onPressed: (){
                         Navigator.push(
@@ -50,11 +69,14 @@ class HomePage extends HookConsumerWidget {
                           ),
                         );
                       }, icon: Icons.person_outline,text: 'Profile',),
+
                     ),
                   ),
-                  SizedBox(width: 8,),
+                  const SizedBox(
+                    width: 8,
+                  ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 50,
                       child: CustomButton(onPressed: (){}, icon: Icons.emoji_events_outlined,text: 'Ranking',),
                     ),
@@ -65,7 +87,7 @@ class HomePage extends HookConsumerWidget {
           ),
         ),
       ),
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
     );
   }
 }

@@ -22,11 +22,16 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/.gitkeep
-  String get gitkeep => 'assets/images/.gitkeep';
+  /// File path: assets/images/green_circle.png
+  AssetGenImage get greenCircle =>
+      const AssetGenImage('assets/images/green_circle.png');
+
+  /// File path: assets/images/red_cross.png
+  AssetGenImage get redCross =>
+      const AssetGenImage('assets/images/red_cross.png');
 
   /// List of all assets
-  List<String> get values => [gitkeep];
+  List<AssetGenImage> get values => [greenCircle, redCross];
 }
 
 class Assets {

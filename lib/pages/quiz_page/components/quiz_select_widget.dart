@@ -1,23 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:team_pampers/utils/utils.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:team_pampers/features/quiz/quiz.dart';
 
-class QuizSelectWidget extends StatelessWidget {
+class QuizSelectWidget extends HookConsumerWidget {
+  const QuizSelectWidget({
+    super.key,
+    required this.text,
+    required this.answer,
+    required this.currentAnswer,
+  });
   final String text;
-  const QuizSelectWidget({super.key, required this.text});
+  final String answer;
+  final String currentAnswer;
 
   @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      splashColor: Colors.blue,
-      child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black),
-          ),
-        height: context.deviceHeight*0.09,
-        width: context.deviceWidth*0.18,
-        child: Center(child: Text(text))
+  Widget build(BuildContext context, WidgetRef ref) {
+    final didAnswer = ref.watch(didAnswerProvider);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      width: double.infinity,
+      height: 60,
+      child: ElevatedButton(
+        onPressed: didAnswer
+            ? null
+            : () async {
+              ref.read(didAnswerProvider.notifier).state = true;
+                final isCorrect = await ref.read(jadgeQuizProvider).call(
+                      answer: currentAnswer,
+                      selectedAnswer: answer,
+                    );
+                ref.read(isCorrectProvider.notifier).state = isCorrect;
+              },
+        child: Text(text),
       ),
-      onTap: () {},
     );
   }
 }

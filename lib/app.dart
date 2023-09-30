@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:team_pampers/pages/home_page/home_page.dart';
+import 'package:team_pampers/start_up_page.dart';
 import 'package:team_pampers/widgets/widgets.dart';
 
 class App extends StatelessWidget {
@@ -11,11 +11,11 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.deepPurple,
+          seedColor: Colors.deepPurple,
         ),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const StartUpPage(),
       builder: (BuildContext context, Widget? child) {
         return GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
