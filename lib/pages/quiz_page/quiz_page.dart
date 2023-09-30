@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:team_pampers/pages/quiz_page/components/judge_right_wrong_animation.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'components/quiz_body.dart';
 
@@ -15,7 +15,7 @@ class QuizPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: JudgeRightWrongAnimation(child: QuizPageBody()),
+       body: QuizPageBody(),
     );
   }
 }
