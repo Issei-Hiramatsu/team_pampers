@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/pages/home_page/components/home_button.dart';
 import 'package:team_pampers/utils/utils.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:team_pampers/widgets/drawer.dart';
 
 class HomePage extends HookConsumerWidget {
@@ -40,8 +41,21 @@ class HomePage extends HookConsumerWidget {
                 height: 100,
               ),
               SizedBox(
-                  height: 80,
-                  child: HomePageButton(onPressed: () {}, text: 'START')),
+                      height: 80,
+                      child: HomePageButton(onPressed: () {}, text: 'START'))
+                  .animate(onPlay: (controller) => controller.repeat())
+                  .shimmer(delay: 4000.ms, duration: 1800.ms)
+                  .shake(hz: 4, curve: Curves.easeInOutCubic)
+                  .scale(
+                    begin: const Offset(1, 1),
+                    end: const Offset(1.1, 1.1),
+                    duration: 600.ms,
+                  )
+                  .then(delay: 600.ms)
+                  .scale(
+                    begin: const Offset(1, 1),
+                    end: const Offset(1 / 1.1, 1 / 1.1),
+                  ),
               const SizedBox(
                 height: 8,
               ),
