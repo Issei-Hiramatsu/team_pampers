@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:team_pampers/features/quiz/quiz.dart';
 import 'package:team_pampers/pages/home_page/home_page.dart';
 import 'package:team_pampers/pages/result_page/result_animation.dart';
 
@@ -16,6 +17,10 @@ class ResultPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final correctCount = ref.watch(correctCountProvider.notifier).state;
+    final quizJudgeList = ref.watch(quizJudgeListProvider.notifier).state;
+    final resultText = ref.watch(resultTextProvider.notifier).state;
+
     return Scaffold(
       body: Center(
         child: Container(
@@ -23,25 +28,34 @@ class ResultPage extends HookConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // SizedBox(height: 144),
-              Text("5/5",style:TextStyle(fontSize: 64,fontWeight: FontWeight.bold)),
-              Padding(
-                padding: const EdgeInsets.only(left: 120.0),
-                child: Text("正解",style:TextStyle(fontSize: 20)),
+              Text(
+                "5/$correctCount",
+                style:
+                    const TextStyle(fontSize: 64, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 48),
-              ResultAnimation(),
-              SizedBox(height: 48),
-              Text("全問正解！すごい",style: Theme.of(context).textTheme.titleLarge),
-              SizedBox(height: 48),
-
+              const Padding(
+                padding: EdgeInsets.only(left: 120.0),
+                child: Text("正解", style: TextStyle(fontSize: 20)),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 48),
+                child: ResultAnimation(quizJudgeList: quizJudgeList),
+              ),
+              Text(resultText, style: Theme.of(context).textTheme.titleLarge),
+              const SizedBox(height: 48),
               SizedBox(
                 height: 50,
                 child: CustomButton(
                   text: "ホーム画面に戻る",
                   icon: Icons.home,
-                  onPressed: () => Navigator.pushAndRemoveUntil(
-                      context, HomePage.route(), (route) => false),
+                  onPressed: () {
+                    ref.read(quizJudgeListProvider.notifier).state = [];
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      HomePage.route(),
+                      (route) => false,
+                    );
+                  },
                 ),
               ),
             ],
