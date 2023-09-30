@@ -5,8 +5,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/pages/home_page/components/home_button.dart';
 import 'package:team_pampers/pages/home_page/components/home_dropdown_button.dart';
 import 'package:team_pampers/utils/utils.dart';
+
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:team_pampers/widgets/drawer.dart';
+
+import '../quiz_page/right_wrong_test.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -57,7 +60,11 @@ class HomePage extends HookConsumerWidget {
               const SizedBox(height: 8,),
               SizedBox(
                       height: 80,
-                      child: HomePageButton(onPressed: () {}, text: 'START'))
+                      child: HomePageButton(
+                          onPressed: () {
+                            Navigator.push(context, RightWrongTestPage.route());
+                          },
+                          text: 'START'))
                   .animate(onPlay: (controller) => controller.repeat())
                   .shimmer(delay: 4000.ms, duration: 1800.ms)
                   .shake(hz: 4, curve: Curves.easeInOutCubic)
