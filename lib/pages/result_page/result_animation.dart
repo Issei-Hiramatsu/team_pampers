@@ -14,7 +14,6 @@ class ResultAnimation extends HookWidget {
     ];
 
     final AnimationController mistakeController = useAnimationController();
-    //正答した時のアニメーション
     final AnimationController collectController =
         useAnimationController(duration: durationList[0]);
     final AnimationController collectController2 =
@@ -25,99 +24,42 @@ class ResultAnimation extends HookWidget {
     collectController.forward();
     collectController2.forward();
     collectController3.forward();
-    return Container(
-      height: 110,
-      width: 280,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(2),
-        border: Border.all(color: Colors.red),
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Lottie.network(
+        'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
+        width: 60,
+        height: 60,
+        controller: true ? collectController : mistakeController,
+        addRepaintBoundary: false,
+        options: LottieOptions(enableMergePaths: true),
       ),
-      child: Center(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Lottie.network(
-                  'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
-                  width: 50,
-                  height: 50,
-                  controller: true ? collectController : mistakeController,
-                  addRepaintBoundary: false,
-                  options: LottieOptions(enableMergePaths: true),
-                ),
-                Lottie.network(
-                  'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
-                  width: 50,
-                  height: 50,
-                  controller: true ? collectController2 : mistakeController,
-                ),
-                Lottie.network(
-                  'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
-                  width: 50,
-                  height: 50,
-                  controller: true ? collectController3 : mistakeController,
-                ),
-                Lottie.network(
-                  'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
-                  animate: false,
-                  width: 50,
-                  height: 50,
-                  controller: true ? collectController : mistakeController,
-                  options: LottieOptions(enableMergePaths: true),
-                ),
-                Lottie.network(
-                  'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
-                  width: 50,
-                  height: 50,
-                  controller: true ? collectController2 : mistakeController,
-                  options: LottieOptions(enableMergePaths: true),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Lottie.network(
-                  'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
-                  width: 50,
-                  height: 50,
-                  controller: true ? collectController3 : mistakeController,
-                  addRepaintBoundary: false,
-                  options: LottieOptions(enableMergePaths: true),
-                ),
-                Lottie.network(
-                  'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
-                  width: 50,
-                  height: 50,
-                  controller: true ? collectController : mistakeController,
-                ),
-                Lottie.network(
-                  'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
-                  width: 50,
-                  height: 50,
-                  controller: true ? collectController2 : mistakeController,
-                ),
-                Lottie.network(
-                  'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
-                  animate: false,
-                  width: 50,
-                  height: 50,
-                  controller: true ? collectController3 : mistakeController,
-                  options: LottieOptions(enableMergePaths: true),
-                ),
-                Lottie.network(
-                  'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
-                  width: 50,
-                  height: 50,
-                  controller: true ? collectController : mistakeController,
-                  options: LottieOptions(enableMergePaths: true),
-                ),
-              ],
-            ),
-          ],
-        ),
+      Lottie.network(
+        'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
+        width: 60,
+        height: 60,
+        controller: true ? collectController2 : mistakeController,
       ),
-    );
+      Lottie.network(
+        'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
+        width: 60,
+        height: 60,
+        controller: true ? collectController3 : mistakeController,
+      ),
+      Lottie.network(
+        'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
+        animate: false,
+        width: 60,
+        height: 60,
+        controller: true ? collectController : mistakeController,
+        options: LottieOptions(enableMergePaths: true),
+      ),
+      Lottie.network(
+        'https://assets1.lottiefiles.com/packages/lf20_ADzN7G.json',
+        width: 60,
+        height: 60,
+        controller: true ? collectController2 : mistakeController,
+        options: LottieOptions(enableMergePaths: true),
+      ),
+    ]);
   }
 }
