@@ -11,6 +11,32 @@ final isCorrectProvider = StateProvider.autoDispose<bool>((ref) => false);
 
 final didAnswerProvider = StateProvider.autoDispose<bool>((ref) => false);
 
+final quizJudgeListProvider = StateProvider<List<bool>>((ref) => []);
+
+final correctCountProvider = StateProvider.autoDispose<int>((ref) {
+  final read = ref.read;
+  final quizJudgeList = read(quizJudgeListProvider.notifier).state;
+  return quizJudgeList.where((judge) => judge == true).length;
+});
+
+final resultTextProvider = StateProvider.autoDispose<String>((ref) {
+  final correctCount = ref.read(correctCountProvider.notifier).state;
+  switch (correctCount) {
+    case 1:
+      return '勉強しよう！';
+    case 2:
+      return '勉強しよう！';
+    case 3:
+      return 'なかなかやるね！';
+    case 4:
+      return 'あと、一問。おしい！';
+    case 5:
+      return '全問正解！すごい';
+    default:
+      return '';
+  }
+});
+
 final fetchQuizProvider = FutureProvider.autoDispose<List<QuizData>>(
   (ref) async {
     final read = ref.read;
