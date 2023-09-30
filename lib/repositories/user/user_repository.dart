@@ -7,4 +7,8 @@ abstract class UserRepository {
   User? get currentUser;
 
   Future<UserData?> fetchUserData();
+
+  Future<void> updateUserData({
+    required File? file,
+  });
 }

@@ -9,7 +9,7 @@ import 'package:team_pampers/repositories/user/user_repository.dart';
 import 'package:team_pampers/utils/utils.dart';
 
 final userRepositoryImplProvider = Provider<UserRepository>(
-      (ref) => UserRepositoryImpl(
+  (ref) => UserRepositoryImpl(
     ref.watch(authProvider),
     ref.watch(firestoreProvider),
     ref.watch(storageProvider),
@@ -18,10 +18,10 @@ final userRepositoryImplProvider = Provider<UserRepository>(
 
 class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl(
-      this._auth,
-      this._firestore,
-      this._storage,
-      );
+    this._auth,
+    this._firestore,
+    this._storage,
+  );
   final FirebaseAuth _auth;
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
@@ -36,4 +36,16 @@ class UserRepositoryImpl implements UserRepository {
     return UserData.fromJson(response.data()!);
   }
 
+  @override
+  Future<void> updateUserData({required File? file}) async {
+    final uid = currentUser!.uid;
+    if (file != null) {
+      const fileName = 'profile_icon_image.jpg';
+      final reference = _storage.ref().child('users/$fileName');
+      final imageUrl = await reference.getDownloadURL();
+      await _firestore.collection('users').doc(uid).update({
+        'imageUrl': imageUrl,
+      });
+    }
+  }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/features/user/user.dart';
+import 'package:team_pampers/pages/profile_page/components/profile_components.dart';
 import 'package:team_pampers/pages/sign_in_page/sign_in_page.dart';
 import 'package:team_pampers/utils/utils.dart';
-import 'package:team_pampers/widgets/custom_button.dart';
 import 'package:team_pampers/widgets/widgets.dart';
 
 class ProfilePage extends HookConsumerWidget {
@@ -26,13 +26,8 @@ class ProfilePage extends HookConsumerWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: 100,
-                      width: 100,
-                      child: CircleAvatar(
-                        backgroundImage:
-                            AssetImage(user.imageUrl ?? 'asset/profile.jpg'),
-                      ),
+                    ProfileImageAvator(
+                      imageUrl: user.imageUrl,
                     ),
                     const SizedBox(
                       height: 40,
@@ -63,6 +58,5 @@ class ProfilePage extends HookConsumerWidget {
       ),
       loading: () => const Loading(),
     );
-    // return
   }
 }
