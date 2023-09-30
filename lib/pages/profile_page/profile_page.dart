@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:team_pampers/features/user/user.dart';
+import 'package:team_pampers/pages/sign_in_page/sign_in_page.dart';
 import 'package:team_pampers/utils/utils.dart';
 import 'package:team_pampers/widgets/custom_button.dart';
+import 'package:team_pampers/widgets/widgets.dart';
 
 class ProfilePage extends HookConsumerWidget {
   const ProfilePage({super.key});
@@ -14,30 +17,52 @@ class ProfilePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 100,
-              width: 100,
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/images/profile_image.JPG',),
+    final fetchUser = ref.watch(fetchUserDataProvider);
+    return fetchUser.when(
+      data: (user) => user != null
+          ? Scaffold(
+              appBar: AppBar(),
+              body: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: CircleAvatar(
+                        backgroundImage:
+                            AssetImage(user.imageUrl ?? 'asset/profile.jpg'),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Text(
+                      '@${user.userName}',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    SizedBox(
+                      width: context.deviceWidth * 0.5,
+                      child: CustomButton(
+                        onPressed: () {},
+                        text: 'ランキング',
+                        icon: Icons.emoji_events_outlined,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 40,),
-            Text('@UserName',style: Theme.of(context).textTheme.titleLarge,),
-            SizedBox(height: 40,),
-            SizedBox(
-              width: context.deviceWidth*0.5,
-              child: CustomButton(onPressed: (){
-
-              }, text: 'ランキング',icon: Icons.emoji_events_outlined,),
-            ),],
-        ),
+            )
+          : const SignInPage(),
+      error: (error, stackTrace) => ErrorPage(
+        error: error,
+        onTapReload: () => ref.invalidate(fetchUserDataProvider),
       ),
+      loading: () => const Loading(),
     );
+    // return
   }
 }
