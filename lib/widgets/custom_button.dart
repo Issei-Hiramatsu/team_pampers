@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class HomePageButton extends StatelessWidget {
-  const HomePageButton(
+class CustomButton extends StatelessWidget {
+  const CustomButton(
       {super.key,
         required this.onPressed,
         required this.text,
         this.icon,
-        });
+      });
 
   final VoidCallback onPressed;
   final String text;
@@ -23,14 +23,14 @@ class HomePageButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(0),
         ),
       ),
-        onPressed: onPressed,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon),
-            Text(text),
-          ],
-        ),
+      onPressed: onPressed,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon),
+          Text(text),
+        ],
+      ),
     );
   }
 }
