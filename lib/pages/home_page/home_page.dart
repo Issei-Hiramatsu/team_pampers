@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/pages/profile_page/profile_page.dart';
+import 'package:team_pampers/pages/ranking_page/ranking_page.dart';
 import 'package:team_pampers/widgets/custom_button.dart';
 import 'package:team_pampers/widgets/drawer.dart';
 import 'package:team_pampers/pages/home_page/components/home_dropdown_button.dart';
@@ -100,7 +101,13 @@ class HomePage extends HookConsumerWidget {
                   Expanded(
                     child: SizedBox(
                       height: 50,
-                      child: CustomButton(onPressed: (){}, icon: Icons.emoji_events_outlined,text: 'Ranking',),
+                      child: CustomButton(onPressed: (){
+                        Navigator.push(
+                          context,
+                          RankingPage.route(
+                          ),
+                        );
+                      }, icon: Icons.emoji_events_outlined,text: 'Ranking',),
                     ),
                   ),
                 ],
