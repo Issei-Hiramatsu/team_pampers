@@ -1,6 +1,9 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/pages/home_page/components/home_button.dart';
+import 'package:team_pampers/pages/home_page/components/home_dropdown_button.dart';
 import 'package:team_pampers/utils/utils.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:team_pampers/widgets/drawer.dart';
@@ -40,6 +43,18 @@ class HomePage extends HookConsumerWidget {
               const SizedBox(
                 height: 100,
               ),
+              Row(
+                children: [
+                  Expanded(child: Container()),
+                  const Expanded(
+                    child: SizedBox(
+                      height: 35,
+                      child: HomeDropDownButton(),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8,),
               SizedBox(
                       height: 80,
                       child: HomePageButton(onPressed: () {}, text: 'START'))
