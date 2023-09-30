@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:team_pampers/widgets/custom_text_field.dart';
+import 'package:team_pampers/pages/sign_in_page/sign_in_page.dart';
+import 'package:team_pampers/widgets/widgets.dart';
 
-class SignInPage extends HookConsumerWidget {
-  const SignInPage({super.key});
+class ResetPasswordPage extends HookConsumerWidget {
+  const ResetPasswordPage({super.key});
 
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(
-      builder: (_) => const SignInPage(),
+      builder: (_) => const ResetPasswordPage(),
     );
   }
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final emailController = useTextEditingController();
+
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -25,42 +32,34 @@ class SignInPage extends HookConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Login',
+                  'Reset Password',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
-
                 const SizedBox(
                   height: 60,
                 ),
-                // CustomTextField(
-                //     onChanged: ,
-                //     controller: ,
-                //     labelText: 'メールアドレス'),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.mail),
-                    labelText: 'メールアドレス'
-                  ),
+                CustomTextField(
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  labelText: 'メールアドレス',
+                  icon: Icons.mail,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                      icon: Icon(Icons.lock),
-                      labelText: 'パスワード'
-                  ),
-                ),
-                const SizedBox(
-                  height: 60,
-                ),
                 ElevatedButton(
-                    onPressed: (){}, child: const Text('ログイン'),
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      SignInPage.route(),
+                      (_) => false,
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size.fromWidth(double.maxFinite),
                   ),
-                )
+                  child: const Text('送信'),
+                ),
               ],
             ),
           ),
