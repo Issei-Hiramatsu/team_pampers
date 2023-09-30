@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'components/home_components.dart';
+import 'package:team_pampers/pages/home_page/components/home_button.dart';
+import 'package:team_pampers/utils/utils.dart';
+import 'package:team_pampers/widgets/drawer.dart';
 
 class HomePage extends HookConsumerWidget {
-  const HomePage({super.key});
+   const HomePage({super.key});
 
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(
@@ -15,22 +15,51 @@ class HomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final counter = useState(0);
-
-    void incrementCounter() {
-      counter.value += 1;
-    }
-
+    var _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-      appBar: const HomePageAppBar(),
-      body: HomePageBody(
-        counter: counter.value,
+      key: _scaffoldKey,
+      appBar: AppBar(
+        leading:
+          IconButton(icon: Icon(Icons.settings),
+            onPressed: (){
+              _scaffoldKey.currentState!.openDrawer();
+
+            },),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('XXXXテスト',style: Theme.of(context).textTheme.headlineLarge,),
+              SizedBox(height: 100,),
+              SizedBox(
+                height: 80,
+                  child: HomePageButton(onPressed: (){}, text: 'START')),
+              SizedBox(height: 8,),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 50,
+                      child: HomePageButton(onPressed: (){}, icon: Icons.person_outline,text: 'Profile',),
+                    ),
+                  ),
+                  SizedBox(width: 8,),
+                  Expanded(
+                    child: Container(
+                      height: 50,
+                      child: HomePageButton(onPressed: (){}, icon: Icons.emoji_events_outlined,text: 'Ranking',),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
       ),
+      drawer: CustomDrawer(),
     );
   }
 }
