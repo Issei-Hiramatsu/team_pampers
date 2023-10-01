@@ -23,23 +23,23 @@ class RankingPage extends HookConsumerWidget {
       data: (users) => users != null
           ? Scaffold(
               appBar: AppBar(
+                title: Text('ランキング',style: TextStyle(fontWeight: FontWeight.bold),),
               ),
-              body: Center(
-                child: ListView.builder(
-                  itemCount: users.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final user = users[index];
-                    return SizedBox(
-                      height: 72,
-                      child: RankingCard(
-                        number: index+1,
-                        imageUrl: user.imageUrl ?? '',
-                        userName: user.userName ?? '',
-                        score: user.score ?? 1,
-                      ),
-                    );
-                  },
-                ),
+              body: ListView.builder(
+                padding: EdgeInsets.only(top: 24),
+                itemCount: users.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final user = users[index];
+                  return SizedBox(
+                    height: 72,
+                    child: RankingCard(
+                      number: index+1,
+                      imageUrl: user.imageUrl ?? '',
+                      userName: user.userName ?? '',
+                      score: user.score ?? 1,
+                    ),
+                  );
+                },
               ),
             )
           : SignInPage(),
