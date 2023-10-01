@@ -28,10 +28,12 @@ final fetchUserDataProvider = FutureProvider.autoDispose<UserData?>(
 
 final updateUserDataProvider = Provider.autoDispose<
     Future<void> Function({
+      int? score,
       File? file,
       required VoidCallback onSuccess,
     })>(
   (ref) => ({
+    score,
     file,
     required onSuccess,
   }) async {
@@ -40,6 +42,7 @@ final updateUserDataProvider = Provider.autoDispose<
     try {
       read(overlayLoadingWidgetProvider.notifier).update((state) => true);
       await read(userRepositoryImplProvider).updateUserData(
+        score: score,
         file: file,
       );
       onSuccess();

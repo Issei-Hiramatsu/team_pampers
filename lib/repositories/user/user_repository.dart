@@ -10,6 +10,7 @@ abstract class UserRepository {
   Future<UserData?> fetchUserData();
 
   Future<void> updateUserData({
+    required int? score,
     required File? file,
   });
 }

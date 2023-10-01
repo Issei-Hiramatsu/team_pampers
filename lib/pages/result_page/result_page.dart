@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/features/quiz/quiz.dart';
+import 'package:team_pampers/features/user/user.dart';
 import 'package:team_pampers/pages/home_page/home_page.dart';
 import 'package:team_pampers/pages/result_page/result_animation.dart';
-
-import '../../widgets/custom_button.dart';
+import 'package:team_pampers/widgets/widgets.dart';
 
 class ResultPage extends HookConsumerWidget {
   const ResultPage({super.key});
@@ -20,6 +20,9 @@ class ResultPage extends HookConsumerWidget {
     final correctCount = ref.watch(correctCountProvider.notifier).state;
     final quizJudgeList = ref.watch(quizJudgeListProvider.notifier).state;
     final resultText = ref.watch(resultTextProvider.notifier).state;
+    ref
+        .watch(updateUserDataProvider)
+        .call(score: correctCount * 20, onSuccess: () {});
 
     return Scaffold(
       body: Center(
