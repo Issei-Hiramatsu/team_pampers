@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/pages/profile_page/profile_page.dart';
@@ -19,17 +20,8 @@ class HomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.settings),
-          onPressed: () {
-            scaffoldKey.currentState!.openDrawer();
-          },
-        ),
-      ),
+      appBar: AppBar(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -46,21 +38,34 @@ class HomePage extends HookConsumerWidget {
               Row(
                 children: [
                   Expanded(child: Container()),
+                  const SizedBox(width: 8,),
                   const Expanded(
                     child: SizedBox(
-                      height: 35,
+                      height: 32,
                       child: HomeDropDownButton(),
                     ),
                   ),
                 ],
               ),
+
+              const SizedBox(height: 16),
+
               SizedBox(
                       height: 80,
-                      child: CustomButton(
-                          onPressed: () {
-                            Navigator.push(context, QuizPage.route());
-                          },
-                          text: 'START'))
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          side: const BorderSide(
+                            color: Colors.black,
+                          ),
+                        ),
+                        onPressed: () {Navigator.push(context, QuizPage.route());},
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('スタート',style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ))
                   .animate(onPlay: (controller) => controller.repeat())
                   .shimmer(delay: 4000.ms, duration: 1800.ms)
                   .shake(hz: 4, curve: Curves.easeInOutCubic)
@@ -75,7 +80,7 @@ class HomePage extends HookConsumerWidget {
                     end: const Offset(1 / 1.1, 1 / 1.1),
                   ),
               const SizedBox(
-                height: 8,
+                height: 24,
               ),
               Row(
                 children: [
@@ -90,7 +95,7 @@ class HomePage extends HookConsumerWidget {
                           );
                         },
                         icon: Icons.person_outline,
-                        text: 'Profile',
+                        text: 'プロフィール',
                       ),
                     ),
                   ),
@@ -103,7 +108,7 @@ class HomePage extends HookConsumerWidget {
                       child: CustomButton(
                         onPressed: () {},
                         icon: Icons.emoji_events_outlined,
-                        text: 'Ranking',
+                        text: 'ランキング',
                       ),
                     ),
                   ),
