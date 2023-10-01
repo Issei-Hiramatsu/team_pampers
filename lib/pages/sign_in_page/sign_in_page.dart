@@ -32,9 +32,11 @@ class SignInPage extends HookConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Login',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: TextStyle(
+                    fontSize: 40,
+                  ),
                 ),
                 const SizedBox(
                   height: 60,
