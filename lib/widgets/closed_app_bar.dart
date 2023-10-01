@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:team_pampers/pages/home_page/home_page.dart';
 
 class ClosedAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ClosedAppBar({
@@ -12,15 +13,20 @@ class ClosedAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () {
-            // アイコンがタップされたときの処理
-            // 通常は画面を閉じる操作などがここに記述されます
-          },
+      leading: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: IconButton(
+            icon: const Icon(Icons.close),
+            onPressed: () {
+              Navigator.of(context)
+                  .pushAndRemoveUntil(HomePage.route(), (route) => false);
+              // アイコンがタップされたときの処理
+              // 通常は画面を閉じる操作などがここに記述されます
+            },
+          ),
         ),
-      ],
+      ),
     );
   }
 }
