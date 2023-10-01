@@ -10,6 +10,7 @@ _$_UserData _$$_UserDataFromJson(Map<String, dynamic> json) => _$_UserData(
       email: json['email'] as String,
       userName: json['userName'] as String?,
       imageUrl: json['imageUrl'] as String?,
+      score: json['score'] as int?,
       createdAt: json['createdAt'],
     );
 
@@ -18,5 +19,6 @@ Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
       'email': instance.email,
       'userName': instance.userName,
       'imageUrl': instance.imageUrl,
+      'score': instance.score,
       'createdAt': instance.createdAt,
     };

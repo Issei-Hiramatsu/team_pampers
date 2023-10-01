@@ -22,12 +22,25 @@ class UserRepositoryImpl implements UserRepository {
     this._firestore,
     this._storage,
   );
+
   final FirebaseAuth _auth;
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
 
   @override
   User? get currentUser => _auth.currentUser;
+
+  @override
+  Future<List<UserData>> fetchUsersData() async {
+    final response = await _firestore.collection('users').orderBy(descending: true,'score').get();
+    final list = <UserData>[];
+
+    for (final document in response.docs) {
+      final data = UserData.fromJson(document.data());
+      list.add(data);
+    }
+    return list;
+  }
 
   @override
   Future<UserData?> fetchUserData() async {

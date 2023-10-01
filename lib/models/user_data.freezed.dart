@@ -23,6 +23,7 @@ mixin _$UserData {
   String get email => throw _privateConstructorUsedError;
   String? get userName => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
+  int? get score => throw _privateConstructorUsedError;
   dynamic get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +38,11 @@ abstract class $UserDataCopyWith<$Res> {
       _$UserDataCopyWithImpl<$Res, UserData>;
   @useResult
   $Res call(
-      {String email, String? userName, String? imageUrl, dynamic createdAt});
+      {String email,
+      String? userName,
+      String? imageUrl,
+      int? score,
+      dynamic createdAt});
 }
 
 /// @nodoc
@@ -56,6 +61,7 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
     Object? email = null,
     Object? userName = freezed,
     Object? imageUrl = freezed,
+    Object? score = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -71,6 +77,10 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      score: freezed == score
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -87,7 +97,11 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String email, String? userName, String? imageUrl, dynamic createdAt});
+      {String email,
+      String? userName,
+      String? imageUrl,
+      int? score,
+      dynamic createdAt});
 }
 
 /// @nodoc
@@ -104,6 +118,7 @@ class __$$_UserDataCopyWithImpl<$Res>
     Object? email = null,
     Object? userName = freezed,
     Object? imageUrl = freezed,
+    Object? score = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_$_UserData(
@@ -119,6 +134,10 @@ class __$$_UserDataCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      score: freezed == score
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -134,6 +153,7 @@ class _$_UserData implements _UserData {
       {required this.email,
       this.userName,
       this.imageUrl,
+      this.score,
       required this.createdAt});
 
   factory _$_UserData.fromJson(Map<String, dynamic> json) =>
@@ -146,11 +166,13 @@ class _$_UserData implements _UserData {
   @override
   final String? imageUrl;
   @override
+  final int? score;
+  @override
   final dynamic createdAt;
 
   @override
   String toString() {
-    return 'UserData(email: $email, userName: $userName, imageUrl: $imageUrl, createdAt: $createdAt)';
+    return 'UserData(email: $email, userName: $userName, imageUrl: $imageUrl, score: $score, createdAt: $createdAt)';
   }
 
   @override
@@ -163,12 +185,13 @@ class _$_UserData implements _UserData {
                 other.userName == userName) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
+            (identical(other.score, score) || other.score == score) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, email, userName, imageUrl,
+  int get hashCode => Object.hash(runtimeType, email, userName, imageUrl, score,
       const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
@@ -190,6 +213,7 @@ abstract class _UserData implements UserData {
       {required final String email,
       final String? userName,
       final String? imageUrl,
+      final int? score,
       required final dynamic createdAt}) = _$_UserData;
 
   factory _UserData.fromJson(Map<String, dynamic> json) = _$_UserData.fromJson;
@@ -200,6 +224,8 @@ abstract class _UserData implements UserData {
   String? get userName;
   @override
   String? get imageUrl;
+  @override
+  int? get score;
   @override
   dynamic get createdAt;
   @override

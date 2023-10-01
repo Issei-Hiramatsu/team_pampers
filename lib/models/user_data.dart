@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_data.freezed.dart';
@@ -9,6 +11,7 @@ abstract class UserData with _$UserData {
     required String email,
     String? userName,
     String? imageUrl,
+    int? score,
     required dynamic createdAt,
   }) = _UserData;
 
