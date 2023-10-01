@@ -28,72 +28,81 @@ class SelectImagePage extends HookConsumerWidget {
         elevation: 0,
         backgroundColor: ColorName.white,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text(
-              'プロフィール画像を選択',
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: GestureDetector(
-                onTap: () async {
-                  loading.value = true;
-                  file.value = await pickImageAndUpload(ref: ref);
-                  final image = await ref.read(getDownloadUrlProvider);
-                  profileImage.value = image;
-                  loading.value = false;
-                },
-                child: loading.value == false
-                    ? profileImage.value != null
-                        ? CircleAvatar(
-                            radius: context.deviceWidth * 0.18,
-                            backgroundImage: profileImage.value!.image,
-                          )
-                        : CircleAvatar(
-                            radius: context.deviceWidth * 0.18,
-                            child: const Icon(Icons.person),
-                          )
-                    : const CircularProgressIndicator(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              const Text(
+                'プロフィール画像を選択',style: TextStyle(fontSize: 24),
               ),
-            ),
-            Column(
-              children: [
-                ElevatedButton(
-                  onPressed: () async {
-                    await updateUserData(
-                      file: file.value,
-                      ref: ref,
-                      context: context,
-                    );
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: GestureDetector(
+                  onTap: () async {
+                    loading.value = true;
+                    file.value = await pickImageAndUpload(ref: ref);
+                    final image = await ref.read(getDownloadUrlProvider);
+                    profileImage.value = image;
+                    loading.value = false;
                   },
-                  child: const Text('登録'),
+                  child: loading.value == false
+                      ? profileImage.value != null
+                          ? CircleAvatar(
+                              radius: context.deviceWidth * 0.18,
+                              backgroundImage: profileImage.value!.image,
+                            )
+                          : CircleAvatar(
+                              radius: context.deviceWidth * 0.18,
+                              child: const Icon(Icons.person),
+                            )
+                      : const CircularProgressIndicator(),
                 ),
-                ElevatedButton(
-                  onPressed: () async {
-                    if (profileImage.value != null) {
-                      await deleteFile(
-                        ref: ref,
-                        context: context,
-                      );
-                    } else {
-                      ScaffoldMessengerService.showSuccessSnackBar(
-                        context,
-                        '新規登録が完了しました!',
-                      );
-                      await Navigator.pushAndRemoveUntil(
-                        context,
-                        HomePage.route(),
-                        (route) => false,
-                      );
-                    }
-                  },
-                  child: const Text('スキップ'),
-                ),
-              ],
-            ),
-          ],
+              ),
+              Column(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        await updateUserData(
+                          file: file.value,
+                          ref: ref,
+                          context: context,
+                        );
+                      },
+                      child: const Text('登録'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        if (profileImage.value != null) {
+                          await deleteFile(
+                            ref: ref,
+                            context: context,
+                          );
+                        } else {
+                          ScaffoldMessengerService.showSuccessSnackBar(
+                            context,
+                            '新規登録が完了しました!',
+                          );
+                          await Navigator.pushAndRemoveUntil(
+                            context,
+                            HomePage.route(),
+                            (route) => false,
+                          );
+                        }
+                      },
+                      child: const Text('スキップ'),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
