@@ -21,7 +21,9 @@ class HomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(iconTheme: const IconThemeData(
+          size: 40  //アイコンの大きさ
+      )),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -86,7 +88,7 @@ class HomePage extends HookConsumerWidget {
                 children: [
                   Expanded(
                     child: SizedBox(
-                      height: 50,
+                      height: 48,
                       child: CustomButton(
                         onPressed: () {
                           Navigator.push(
@@ -104,7 +106,7 @@ class HomePage extends HookConsumerWidget {
                   ),
                   Expanded(
                     child: SizedBox(
-                      height: 50,
+                      height: 48,
                       child: CustomButton(
                         onPressed: () {},
                         icon: Icons.emoji_events_outlined,
