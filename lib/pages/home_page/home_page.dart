@@ -52,23 +52,10 @@ class HomePage extends HookConsumerWidget {
               const SizedBox(height: 16),
               SizedBox(
                       height: 80,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          side: const BorderSide(
-                            color: Colors.black,
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.push(context, QuizPage.route());
-                        },
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('スタート',
-                                style: TextStyle(
-                                    fontSize: 30, fontWeight: FontWeight.bold)),
-                          ],
-                        ),
+                      child: CustomButton(
+                        onPressed: (){
+                          Navigator.push(context, QuizPage.route()
+                        );}, text: Text('スタート'),
                       ))
                   .animate(onPlay: (controller) => controller.repeat())
                   .shimmer(delay: 4000.ms, duration: 1800.ms)
@@ -99,7 +86,7 @@ class HomePage extends HookConsumerWidget {
                           );
                         },
                         icon: Icons.person_outline,
-                        text: 'プロフィール',
+                        text:Text('プロフィール'),
                       ),
                     ),
                   ),
@@ -114,7 +101,7 @@ class HomePage extends HookConsumerWidget {
                           Navigator.push(context, RankingPage.route());
                         },
                         icon: Icons.emoji_events_outlined,
-                        text: 'ランキング',
+                        text: Text('ランキング'),
                       ),
                     ),
                   ),

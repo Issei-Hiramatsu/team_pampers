@@ -39,14 +39,6 @@ class ProfilePage extends HookConsumerWidget {
                     const SizedBox(
                       height: 40,
                     ),
-                    SizedBox(
-                      width: context.deviceWidth * 0.5,
-                      child: CustomButton(
-                        onPressed: () {},
-                        text: 'ランキング',
-                        icon: Icons.emoji_events_outlined,
-                      ),
-                    ),
                   ],
                 ),
               ),

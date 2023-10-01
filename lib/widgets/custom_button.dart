@@ -9,23 +9,19 @@ class CustomButton extends StatelessWidget {
       });
 
   final VoidCallback onPressed;
-  final String text;
+  final Text text;
   final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        side: const BorderSide(
-          color: Colors.black,
-        ),
-      ),
+      style: ElevatedButton.styleFrom(),
       onPressed: onPressed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(icon),
-          Text(text),
+          text,
         ],
       ),
     );

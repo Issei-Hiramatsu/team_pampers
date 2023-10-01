@@ -49,7 +49,7 @@ class ResultPage extends HookConsumerWidget {
               SizedBox(
                 height: 50,
                 child: CustomButton(
-                  text: "ホーム画面に戻る",
+                  text: Text('ホーム画面に戻る'),
                   icon: Icons.home,
                   onPressed: () {
                     ref.read(quizJudgeListProvider.notifier).state = [];
