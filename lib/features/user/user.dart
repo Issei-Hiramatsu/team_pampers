@@ -57,3 +57,23 @@ final updateUserDataProvider = Provider.autoDispose<
     }
   },
 );
+
+final fetchUsersDataProvider = FutureProvider.autoDispose<List<UserData>?>(
+      (ref) async {
+    final read = ref.read;
+    final isNetworkCheck = await isNetworkConnected();
+    try {
+      final response = await read(userRepositoryImplProvider).fetchUsersData();
+      return response;
+    } on AppException catch (e) {
+      if (!isNetworkCheck) {
+        const exception = AppException(
+          message: 'Maybe your network is disconnected. Please check yours.',
+        );
+        throw exception;
+      }
+      debugPrint('ユーザー取得エラー: $e');
+      rethrow;
+    }
+  },
+);

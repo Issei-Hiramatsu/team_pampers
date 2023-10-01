@@ -41,7 +41,7 @@ class AuthRepositoryImpl implements AuthRepository {
           UserData(
             email: userData.email,
             userName: userData.userName,
-            createdAt: createdAtTimestamp,
+            createdAt: createdAtTimestamp
           ).toJson(),
         );
     return userCredential.user?.uid;

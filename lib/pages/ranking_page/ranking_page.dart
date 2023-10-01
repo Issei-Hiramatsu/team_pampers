@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/features/user/user.dart';
@@ -15,49 +17,37 @@ class RankingPage extends HookConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
-    final fetchUser = ref.watch(fetchUserDataProvider);
-    return fetchUser.when(
-        data: (user) => user != null ?
-        Scaffold(
-          appBar: AppBar(),
-          body: Center(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (BuildContext context, int index){
-                final number = index + 1;
-                return SizedBox(
-                  height: 72,
-                  child: RankingCard(
-                    number: number,
-                  ),
-                );
-              },
-          ),
-        ),
-      ):SignInPage(),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final fetchUsers = ref.watch(fetchUsersDataProvider);
+    return fetchUsers.when(
+      data: (users) => users != null
+          ? Scaffold(
+              appBar: AppBar(
+                title: Text('ランキング',style: TextStyle(fontWeight: FontWeight.bold),),
+              ),
+              body: ListView.builder(
+                padding: EdgeInsets.only(top: 24),
+                itemCount: users.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final user = users[index];
+                  return SizedBox(
+                    height: 72,
+                    child: RankingCard(
+                      number: index+1,
+                      imageUrl: user.imageUrl ?? '',
+                      userName: user.userName ?? '',
+                      score: user.score ?? 1,
+                    ),
+                  );
+                },
+              ),
+            )
+          : SignInPage(),
       error: (error, stackTrace) => ErrorPage(
         error: error,
         onTapReload: () => ref.invalidate(fetchUserDataProvider),
       ),
       loading: () => const Loading(),
     );
-    // return Scaffold(
-    //   appBar: AppBar(),
-    //   body: Center(
-    //     child: ListView.builder(
-    //         itemBuilder: (BuildContext context, int index){
-    //           return Card(
-    //             child: Row(
-    //               children: [
-    //                 Text('$index'),
-    //                 AssetImage()
-    //               ],
-    //             ),
-    //           );
-    //         },
-    //     ),
-    //   ),
-    // );
   }
 }
