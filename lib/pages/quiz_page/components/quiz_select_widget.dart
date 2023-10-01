@@ -5,10 +5,12 @@ import 'package:team_pampers/features/quiz/quiz.dart';
 class QuizSelectWidget extends HookConsumerWidget {
   const QuizSelectWidget({
     super.key,
+    this.color,
     required this.text,
     required this.answer,
     required this.currentAnswer,
   });
+  final Color? color;
   final String text;
   final String answer;
   final String currentAnswer;
@@ -22,10 +24,17 @@ class QuizSelectWidget extends HookConsumerWidget {
       width: double.infinity,
       height: 60,
       child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: didAnswer
+              ? answer == currentAnswer
+                  ? Colors.green
+                  : Colors.red
+              : null,
+        ),
         onPressed: didAnswer
-            ? null
+            ? () {}
             : () async {
-              ref.read(didAnswerProvider.notifier).state = true;
+                ref.read(didAnswerProvider.notifier).state = true;
                 final isCorrect = await ref.read(jadgeQuizProvider).call(
                       answer: currentAnswer,
                       selectedAnswer: answer,
