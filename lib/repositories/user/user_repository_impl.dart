@@ -32,7 +32,10 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<List<UserData>> fetchUsersData() async {
-    final response = await _firestore.collection('users').orderBy(descending: true,'score').get();
+    final response = await _firestore
+        .collection('users')
+        .orderBy(descending: true, 'score')
+        .get();
     final list = <UserData>[];
 
     for (final document in response.docs) {
@@ -50,13 +53,17 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<void> updateUserData({required File? file}) async {
+  Future<void> updateUserData({
+    required File? file,
+    required int? score,
+  }) async {
     final uid = currentUser!.uid;
-    if (file != null) {
+    if (file != null || score != null) {
       const fileName = 'profile_icon_image.jpg';
-      final reference = _storage.ref().child('users/$fileName');
+      final reference = _storage.ref().child('users/$uid/$fileName');
       final imageUrl = await reference.getDownloadURL();
       await _firestore.collection('users').doc(uid).update({
+        'score': score,
         'imageUrl': imageUrl,
       });
     }

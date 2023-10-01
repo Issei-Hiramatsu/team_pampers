@@ -1,13 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:team_pampers/pages/home_page/components/home_components.dart';
 import 'package:team_pampers/pages/profile_page/profile_page.dart';
 import 'package:team_pampers/pages/ranking_page/ranking_page.dart';
-import 'package:team_pampers/widgets/custom_button.dart';
-import 'package:team_pampers/widgets/drawer.dart';
-import 'package:team_pampers/pages/home_page/components/home_dropdown_button.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:team_pampers/pages/quiz_page/quiz_page.dart';
+import 'package:team_pampers/widgets/widgets.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -40,7 +38,9 @@ class HomePage extends HookConsumerWidget {
               Row(
                 children: [
                   Expanded(child: Container()),
-                  const SizedBox(width: 8,),
+                  const SizedBox(
+                    width: 8,
+                  ),
                   const Expanded(
                     child: SizedBox(
                       height: 32,
@@ -49,9 +49,7 @@ class HomePage extends HookConsumerWidget {
                   ),
                 ],
               ),
-
               const SizedBox(height: 16),
-
               SizedBox(
                       height: 80,
                       child: ElevatedButton(
@@ -60,11 +58,15 @@ class HomePage extends HookConsumerWidget {
                             color: Colors.black,
                           ),
                         ),
-                        onPressed: () {Navigator.push(context, QuizPage.route());},
+                        onPressed: () {
+                          Navigator.push(context, QuizPage.route());
+                        },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('スタート',style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold)),
+                            Text('スタート',
+                                style: TextStyle(
+                                    fontSize: 30, fontWeight: FontWeight.bold)),
                           ],
                         ),
                       ))
@@ -108,7 +110,9 @@ class HomePage extends HookConsumerWidget {
                     child: SizedBox(
                       height: 48,
                       child: CustomButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, RankingPage.route());
+                        },
                         icon: Icons.emoji_events_outlined,
                         text: 'ランキング',
                       ),

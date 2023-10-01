@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:team_pampers/features/user/user.dart';
@@ -23,26 +21,29 @@ class RankingPage extends HookConsumerWidget {
       data: (users) => users != null
           ? Scaffold(
               appBar: AppBar(
-                title: Text('ランキング',style: TextStyle(fontWeight: FontWeight.bold),),
+                title: const Text(
+                  'ランキング',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
               body: ListView.builder(
-                padding: EdgeInsets.only(top: 24),
+                padding: const EdgeInsets.only(top: 24),
                 itemCount: users.length,
                 itemBuilder: (BuildContext context, int index) {
                   final user = users[index];
                   return SizedBox(
                     height: 72,
                     child: RankingCard(
-                      number: index+1,
+                      number: index + 1,
                       imageUrl: user.imageUrl ?? '',
                       userName: user.userName ?? '',
-                      score: user.score ?? 1,
+                      score: user.score ?? 0,
                     ),
                   );
                 },
               ),
             )
-          : SignInPage(),
+          : const SignInPage(),
       error: (error, stackTrace) => ErrorPage(
         error: error,
         onTapReload: () => ref.invalidate(fetchUserDataProvider),
