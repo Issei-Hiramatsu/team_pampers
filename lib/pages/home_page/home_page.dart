@@ -29,8 +29,8 @@ class HomePage extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'XXXXテスト',
-                style: Theme.of(context).textTheme.headlineLarge,
+                'スポンサー理解度 テスト',
+                style: TextStyle(fontSize: 32,fontWeight: FontWeight.bold),
               ),
               const SizedBox(
                 height: 100,
