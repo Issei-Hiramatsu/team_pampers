@@ -19,9 +19,6 @@ class CustomButton extends StatelessWidget {
         side: const BorderSide(
           color: Colors.black,
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0),
-        ),
       ),
       onPressed: onPressed,
       child: Row(
