@@ -27,47 +27,58 @@ class QuizPage extends HookConsumerWidget {
     final questionIndex = ref.watch(questionIndexProvider.notifier).state;
     return Scaffold(
       body: JudgeRightWrongAnimation(
-        child: Column(
-          children: [
-            fetchQuiz.when(
-              data: (quizList) {
-                return Container(
-                  margin: const EdgeInsets.all(10),
-                  child: Column(
+        child: fetchQuiz.when(
+          data: (quizList) {
+            return Container(
+              margin: const EdgeInsets.all(10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      const SizedBox(height: 150),
-                      Text("Q$questionIndex"),
+                    children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: Text(quizList[index ?? 0].description),
+                        child: Text(
+                          'Q$questionIndex. ',
+                          style: Theme.of(context).textTheme.headlineLarge,
+                        ),
                       ),
-                      Column(
-                        children: quizList[index ?? 0]
-                            .answers
-                            .asMap()
-                            .entries
-                            .map((answer) {
-                          final answerIndex = answer.key;
-                          final answerValue = answer.value;
-                          return QuizSelectWidget(
-                            text: '${quizAlphabet[answerIndex]} $answerValue',
-                            answer: answerValue,
-                            currentAnswer: quizList[index ?? 0].currentAnswer,
-                          );
-                        }).toList(),
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Text(
+                            quizList[index ?? 0].description,
+                            style: Theme.of(context).textTheme.headlineLarge,
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                );
-              },
-              error: (error, stackTrace) => ErrorPage(
-                error: error,
-                onTapReload: () => ref.invalidate(fetchQuizProvider),
+                  Column(
+                    children: quizList[index ?? 0]
+                        .answers
+                        .asMap()
+                        .entries
+                        .map((answer) {
+                      final answerIndex = answer.key;
+                      final answerValue = answer.value;
+                      return QuizSelectWidget(
+                        text: '${quizAlphabet[answerIndex]} $answerValue',
+                        answer: answerValue,
+                        currentAnswer: quizList[index ?? 0].currentAnswer,
+                      );
+                    }).toList(),
+                  ),
+                ],
               ),
-              loading: () => const Loading(),
-            ),
-          ],
+            );
+          },
+          error: (error, stackTrace) => ErrorPage(
+            error: error,
+            onTapReload: () => ref.invalidate(fetchQuizProvider),
+          ),
+          loading: () => const Loading(),
         ),
       ),
     );
